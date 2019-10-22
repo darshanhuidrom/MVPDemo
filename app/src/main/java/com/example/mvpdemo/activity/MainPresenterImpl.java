@@ -1,5 +1,7 @@
 package com.example.mvpdemo.activity;
 
+import android.view.View;
+
 import com.example.mvpdemo.MainView;
 import com.example.mvpdemo.model.QuoteProvider;
 
@@ -28,5 +30,10 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void onDestroy() {
         mainView=null;
+    }
+
+    @Override
+    public View getRootView() {
+        return null;
     }
 }

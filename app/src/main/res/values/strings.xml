@@ -3,4 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appbar_scrolling_view_behavior">scrolling_behaviour</string>
+    <string name="folder_tab_name">Folder</string>
+    <string name="list_tab_name">Current</string>
+    <string name="saved_tab_name">Saved</string>
 </resources>

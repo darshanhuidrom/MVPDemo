@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import com.example.mvpdemo.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment1 extends Fragment implements MainView {
+public class Fragment1 extends Fragment implements MainView{
 
 
     private View view;
@@ -30,10 +31,13 @@ public class Fragment1 extends Fragment implements MainView {
     private TextView textView,textView2;
     private ProgressBar progressBar;
     private MainPresenter presenter;
+    private static int COUNT=0;
 
 
     public Fragment1() {
         // Required empty public constructor
+        COUNT++;
+        Log.d(">>>>>>>>","No of fragment created :"+COUNT);
 
     }
 
@@ -41,7 +45,7 @@ public class Fragment1 extends Fragment implements MainView {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Log.d(">>>>>>>>","onCreateView");
         view= inflater.inflate(R.layout.fragment_fragment1, container, false);
         presenter = new MainPresenterImpl(this,new QuoteProviderImpl());
         initViews(view);
@@ -82,7 +86,9 @@ public class Fragment1 extends Fragment implements MainView {
 
     @Override
     public void setUpdateListener(MessageUpdateListener listener) {
+        Log.d(">>>>>>>>","The value of listener is "+String.valueOf(listener.toString()));
         listener.onMessageUpdate(textView2);
+
     }
 
 

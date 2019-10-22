@@ -19,13 +19,18 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentHandler fragmentHandler;
     ViewMvpSearch viewMvpSearch;
+    private  MainActivityPresenterImpl mainActivityPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        fragmentHandler = new FragmentHandlerImpl(this);
+
+      //  fragmentHandler = new FragmentHandlerImpl(this);
+        mainActivityPresenter=new MainActivityPresenterImpl(this,null);
+        setContentView(mainActivityPresenter.getRootView());
         viewMvpSearch= new ViewMvpSearchImpl(this);
+
+
     }
 
     @Override
@@ -37,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        fragmentHandler.onDestroy();
+      //  fragmentHandler.onDestroy();
     }
 
     @Override
@@ -49,10 +54,15 @@ public class MainActivity extends AppCompatActivity {
         viewMvpSearch.setSearchListener(new ViewMvpSearch.SearchListener() {
             @Override
             public void onCompleted(final String s) {
-                fragmentHandler.setListener(new MainView.MessageUpdateListener() {
+                mainActivityPresenter.setListener(new MainView.MessageUpdateListener() {
                     @Override
                     public void onMessageUpdate(TextView textView) {
+                        if(textView==null){
+                            Toast.makeText(getApplicationContext(),"textview is null",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         textView.setText(s);
+
                     }
                 });
             }

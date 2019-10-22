@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class QuoteProviderImpl implements QuoteProvider {
 
+    Object java;
     private List<String> arrayList = Arrays.asList(
             "Be yourself. everyone else is already taken.",
             "A room without books is like a body without a soul.",
