@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.mvpdemo.fragment.Fragment1;
 import com.example.mvpdemo.fragment.Fragment2;
+import com.example.mvpdemo.fragment.Fragment3;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,7 +50,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 tempFrag = new Fragment2();
                 break;
             case 2:
-                tempFrag = new Fragment2();
+                tempFrag = new Fragment3();
                 break;
         }
         return tempFrag;

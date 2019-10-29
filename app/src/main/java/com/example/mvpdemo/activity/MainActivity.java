@@ -1,21 +1,23 @@
 package com.example.mvpdemo.activity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mvpdemo.MainView;
 import com.example.mvpdemo.R;
+import com.example.mvpdemo.fragment.Fragment3;
+import com.example.mvpdemo.fragment.FragmentHandler;
 import com.example.mvpdemo.search.ViewMvpSearch;
 import com.example.mvpdemo.search.ViewMvpSearchImpl;
-import com.example.mvpdemo.fragment.FragmentHandler;
-import com.example.mvpdemo.fragment.FragmentHandlerImpl;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Fragment3.OnFragmentInteractionListener {
 
     FragmentHandler fragmentHandler;
     ViewMvpSearch viewMvpSearch;
@@ -24,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_activity);
+        ProviderPresenter providerPresenter = new ProviderPresenterImpl(getApplicationContext());
+       // providerPresenter.deleteStudentByName("Huidrom");
+        providerPresenter.update("1","Huidrom","H");
+        providerPresenter.onRetrieveStudents();
 
       //  fragmentHandler = new FragmentHandlerImpl(this);
-        mainActivityPresenter=new MainActivityPresenterImpl(this,null);
-        setContentView(mainActivityPresenter.getRootView());
-        viewMvpSearch= new ViewMvpSearchImpl(this);
+      //  mainActivityPresenter=new MainActivityPresenterImpl(this,null);
+     //   setContentView(mainActivityPresenter.getRootView());
+     //   viewMvpSearch= new ViewMvpSearchImpl(this);
 
 
     }
@@ -98,4 +105,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Toast.makeText(getApplicationContext(),"Hi,this is Fragment3",Toast.LENGTH_SHORT).show();
+    }
+
+
 }
